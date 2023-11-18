@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-const */
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 interface Transaction {
   id: number;
@@ -12,12 +13,14 @@ interface Transaction {
   seller: string;
 }
 
-export const UploadForm: React.FC = () => {
+export default function UploadForm() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [dataTransaction, setDataTransaction] = useState<Transaction[] | null>(
     null
   );
-  const [value, setValue] = useState(0);
+  const [da, setData] = useState<Transaction[] | null>(null);
+  const [valores, setValores] = useState<number[]>([]);
+  const [total, setTotal] = useState(0);
 
   const handleFileUpload = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,15 +44,40 @@ export const UploadForm: React.FC = () => {
           "http://localhost:3000/transactions/data"
         );
         setDataTransaction(response.data);
-
-        for (let value in response.data.values) {
-          value += Number(value);
-        }
+        setData(response.data);
       } catch (error) {
         console.error("Error uploading file", error);
       }
     }
   };
+
+  async function fetchData() {
+    try {
+      const data = await axios.get("http://localhost:3000/transactions/data");
+      setData(data.data);
+      setDataTransaction(data.data);
+    } catch (error) {
+      console.error("Erro ao buscar dados:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (da != null) {
+      setValores([...da.map((d) => d.value)]);
+    }
+  }, [da]);
+
+  useEffect(() => {
+    if (valores != null) {
+      const soma = valores.reduce((n1, n2) => n1 + n2, 0);
+
+      setTotal(soma);
+    }
+  }, [valores]);
 
   return (
     <div>
@@ -76,10 +104,10 @@ export const UploadForm: React.FC = () => {
               <p>Seller: {transaction.seller}</p>
               <br />
               <br />
-              <p>Total Value: {} </p>
             </div>
           ))}
       </div>
+      <p>Total Value: {total}</p>
     </div>
   );
-};
+}
