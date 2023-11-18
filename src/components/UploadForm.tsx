@@ -63,6 +63,7 @@ export default function UploadForm() {
         );
         setDataTransaction(response.data);
         setError(null);
+        fetchData();
       } catch (error: any) {
         setError(error.response.data.message || "Error loading file");
       }
@@ -97,6 +98,16 @@ export default function UploadForm() {
       setTotal(soma);
     }
   }, [valores]);
+
+  useEffect(() => {
+    if (dataTransaction) {
+      const soma = dataTransaction.reduce(
+        (acc, transaction) => acc + transaction.value,
+        0
+      );
+      setTotal(soma);
+    }
+  }, [dataTransaction]);
 
   return (
     <div>
