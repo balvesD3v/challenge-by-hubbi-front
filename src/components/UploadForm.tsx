@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-const */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -18,7 +19,8 @@ export default function UploadForm() {
   const [dataTransaction, setDataTransaction] = useState<Transaction[] | null>(
     null
   );
-  const [da, setData] = useState<Transaction[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [data, setData] = useState<Transaction[] | null>(null);
   const [valores, setValores] = useState<number[]>([]);
   const [total, setTotal] = useState(0);
 
@@ -26,6 +28,22 @@ export default function UploadForm() {
     e.preventDefault();
 
     if (fileInputRef.current && fileInputRef.current.files) {
+      const uploadedFile = fileInputRef.current.files[0];
+
+      if (
+        !fileInputRef.current ||
+        !fileInputRef.current.files ||
+        fileInputRef.current.files.length === 0
+      ) {
+        setError("Please choose a file to upload");
+        return;
+      }
+
+      if (uploadedFile && uploadedFile.name !== "sales.txt") {
+        setError("Please upload a file named 'sales.txt'.");
+        return;
+      }
+
       const formData = new FormData();
       formData.append("file", fileInputRef.current.files[0]);
 
@@ -44,9 +62,9 @@ export default function UploadForm() {
           "http://localhost:3000/transactions/data"
         );
         setDataTransaction(response.data);
-        setData(response.data);
-      } catch (error) {
-        console.error("Error uploading file", error);
+        setError(null);
+      } catch (error: any) {
+        setError(error.response.data.message || "Error loading file");
       }
     }
   };
@@ -58,6 +76,7 @@ export default function UploadForm() {
       setDataTransaction(data.data);
     } catch (error) {
       console.error("Erro ao buscar dados:", error);
+      setError("Error fetching data");
     }
   }
 
@@ -66,10 +85,10 @@ export default function UploadForm() {
   }, []);
 
   useEffect(() => {
-    if (da != null) {
-      setValores([...da.map((d) => d.value)]);
+    if (data != null) {
+      setValores([...data.map((d) => d.value)]);
     }
-  }, [da]);
+  }, [data]);
 
   useEffect(() => {
     if (valores != null) {
@@ -91,6 +110,8 @@ export default function UploadForm() {
           <button type="submit">Upload</button>
         </div>
       </form>
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       <div>
         {dataTransaction &&
