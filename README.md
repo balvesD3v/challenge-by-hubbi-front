@@ -43,4 +43,12 @@ Puder aprender como funciona uma aplicação em nest utilizando prisma, não tin
 
 ## Melhorias
 
-Umas das melhorias seria implementar um UI mais estilizado com a autenticação e autorização do usuário que fosse utilizar a aplicação.
+1. **Melhorias na Interface do Usuário:**
+   - Implementar melhorias visuais na interface do usuário para uma experiência mais agradável.
+
+2. **Adição de Funcionalidades:**
+   - Adicionar novas funcionalidades que podem melhorar a utilidade ou a usabilidade do aplicativo.
+
+3. **Otimização de Desempenho:**
+   - Identificar e resolver possíveis gargalos de desempenho para garantir uma experiência mais rápida.
+
