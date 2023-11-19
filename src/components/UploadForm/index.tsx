@@ -1,9 +1,20 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-const */
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { useRef, useState, useEffect } from "react";
+import { TransactionList } from "../Transactions/index";
+import {
+  BackgroundColor,
+  FormStyled,
+  DivFormStyled,
+  InputStyled,
+  LabelStyled,
+  TransactionsDiv,
+  Error,
+} from "./styles";
+import { Button } from "../Button";
 
 interface Transaction {
   id: number;
@@ -58,7 +69,7 @@ export default function UploadForm() {
           }
         );
 
-        const response = await axios.get<Transaction[]>(
+        const response = await axios.get(
           "http://localhost:3000/transactions/data"
         );
         setDataTransaction(response.data);
@@ -67,6 +78,15 @@ export default function UploadForm() {
       } catch (error: any) {
         setError(error.response.data.message || "Error loading file");
       }
+    }
+  };
+
+  const handleDeleteData = async () => {
+    try {
+      await axios.delete("http://localhost:3000/transactions/delete-data");
+      fetchData();
+    } catch (error) {
+      console.error("Error deleting data:", error);
     }
   };
 
@@ -99,47 +119,29 @@ export default function UploadForm() {
     }
   }, [valores]);
 
-  useEffect(() => {
-    if (dataTransaction) {
-      const soma = dataTransaction.reduce(
-        (acc, transaction) => acc + transaction.value,
-        0
-      );
-      setTotal(soma);
-    }
-  }, [dataTransaction]);
-
   return (
-    <div>
-      <form onSubmit={handleFileUpload}>
-        <div>
-          <input
+    <BackgroundColor>
+      <FormStyled onSubmit={handleFileUpload}>
+        <DivFormStyled>
+          <InputStyled
             type="file"
             name="file"
-            ref={(input) => (fileInputRef.current = input)}
+            id="file"
+            ref={fileInputRef}
+            onChange={(e) => handleFileUpload(e)}
           />
-          <button type="submit">Upload</button>
-        </div>
-      </form>
+          <LabelStyled htmlFor="file">Escolher arquivo</LabelStyled>
+          <Button />
+        </DivFormStyled>
+      </FormStyled>
+      <p>Total Value Transactions: {total}</p>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <Error>{error}</Error>}
 
-      <div>
-        {dataTransaction &&
-          dataTransaction.map((transaction) => (
-            <div key={transaction.id}>
-              <p>ID: {transaction.id}</p>
-              <p>Type: {transaction.type}</p>
-              <p>Date: {transaction.date}</p>
-              <p>Product: {transaction.product}</p>
-              <p>Value: {transaction.value}</p>
-              <p>Seller: {transaction.seller}</p>
-              <br />
-              <br />
-            </div>
-          ))}
-      </div>
-      <p>Total Value: {total}</p>
-    </div>
+      <TransactionsDiv>
+        <h1>Transactions List</h1>
+        <TransactionList dataTransaction={dataTransaction} />
+      </TransactionsDiv>
+    </BackgroundColor>
   );
 }
