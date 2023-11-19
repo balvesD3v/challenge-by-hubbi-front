@@ -81,15 +81,6 @@ export default function UploadForm() {
     }
   };
 
-  const handleDeleteData = async () => {
-    try {
-      await axios.delete("http://localhost:3000/transactions/delete-data");
-      fetchData();
-    } catch (error) {
-      console.error("Error deleting data:", error);
-    }
-  };
-
   async function fetchData() {
     try {
       const data = await axios.get("http://localhost:3000/transactions/data");
