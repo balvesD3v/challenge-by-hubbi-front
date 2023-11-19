@@ -28,7 +28,6 @@ export const TransactionList: React.FC<TransactionListProps> = ({
       <Table>
         <thead>
           <TableRow>
-            <TableCell>ID</TableCell>
             <TableCell>Type</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>Product</TableCell>

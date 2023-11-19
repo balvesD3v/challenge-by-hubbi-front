@@ -125,6 +125,7 @@ export default function UploadForm() {
           <Button />
         </DivFormStyled>
       </FormStyled>
+
       <p>Total Value Transactions: {total}</p>
 
       {error && <Error>{error}</Error>}

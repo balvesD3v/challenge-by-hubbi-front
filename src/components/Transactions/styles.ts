@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const TransactionListContainer = styled.div`
-  overflow-x: auto; /* Adicione uma barra de rolagem horizontal quando necessário */
+  overflow-x: auto;
   max-height: 400px;
   background-color: #fff;
 `;
