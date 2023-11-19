@@ -126,7 +126,7 @@ export default function UploadForm() {
         </DivFormStyled>
       </FormStyled>
 
-      <p>Total Value Transactions: {total}</p>
+      <p>Total Value Transactions: {`R$${total}`}</p>
 
       {error && <Error>{error}</Error>}
 
