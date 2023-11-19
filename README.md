@@ -11,7 +11,7 @@ Este é o frontend da aplicação HUBBI, uma plataforma desenvolvida para upload
 - Visualização de Dados: Veja as transações armazenadas no banco de dados, incluindo detalhes como ID, tipo, data, produto, valor e vendedor.
 - Cálculo de Total: O frontend calcula e exibe o valor total das transações.
 
-## Funcionalidades Principais
+## Tecnologias Principais
 - React
 - TypeScript
 - Styled Components
