@@ -1,31 +1,46 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Challenge by HUBBI front-end side
 
-Currently, two official plugins are available:
+Este é o frontend da aplicação HUBBI, uma plataforma desenvolvida para upload de arquivos de transações de produtos vendidos. Este frontend foi construído usando React e TypeScript.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Funcionalidades Principais
 
-- Configure the top-level `parserOptions` property like this:
+- Upload de Arquivos: Faça o upload de arquivos no formato sales.txt para processar as transações de vendas.
+- Visualização de Dados: Veja as transações armazenadas no banco de dados, incluindo detalhes como ID, tipo, data, produto, valor e vendedor.
+- Cálculo de Total: O frontend calcula e exibe o valor total das transações.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Funcionalidades Principais
+- React
+- TypeScript
+- Styled Components
+- Axios
+- Vite
+## Instalação e Uso
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# challenge-by-hubbi-front
+- Certifique-se de ter o Node.js instalado na sua máquina.
+- Certifique-se também de iniciar o backend na sua máquina.
+- Clone este repositório: git clone https://github.com/balvesD3v/challenge-by-hubbi-front
+- Instale as dependências: npm install.
+- Inicie o aplicativo: npm run dev.
+- Na aplicação envie o documento sales.txt
+## Demonstração
+https://drive.google.com/file/d/1L2GTB5n2I41yK5dyNakPKzl0XtF4oTco/view?usp=sharing
+
+
+## Aprendizados
+
+Puder aprender como funciona uma aplicação em nest utilizando prisma, não tinha conhecimento nessas duas tecnologias, mas fiz o máximo possível para criar um código limpo como era o pedido. Também pude aprender a utilizar o docker que foi o que mais tive dificuldade mas aprendi sobre as imagens e sobre container e consegui subir minha imagem no docker hub. Foi um desafio muito intenso já que corri contra o tempo e tentei entregar meu melhor. 
+
+
+## Stack utilizada
+
+**Front-end:** React, TypeScript, Styled-Components, Axios
+
+**Back-end:** Node, Nestjs, Prisma, Docker
+
+
+## Melhorias
+
+Umas das melhorias seria implementar um UI mais estilizado com a autenticação e autorização do usuário que fosse utilizar a aplicação.
