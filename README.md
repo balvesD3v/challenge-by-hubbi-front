@@ -31,7 +31,7 @@ https://drive.google.com/file/d/1L2GTB5n2I41yK5dyNakPKzl0XtF4oTco/view?usp=shari
 
 ## Aprendizados
 
-Puder aprender como funciona uma aplicação em nest utilizando prisma, não tinha conhecimento nessas duas tecnologias, mas fiz o máximo possível para criar um código limpo como era o pedido. Também pude aprender a utilizar o docker que foi o que mais tive dificuldade mas aprendi sobre as imagens e sobre container e consegui subir minha imagem no docker hub. Foi um desafio muito intenso já que corri contra o tempo e tentei entregar meu melhor. 
+Pude aprender como funciona uma aplicação em nest utilizando prisma, não tinha conhecimento nessas duas tecnologias, mas fiz o máximo possível para criar um código limpo como era o pedido. Também pude aprender a utilizar o docker que foi o que mais tive dificuldade mas aprendi sobre as imagens e sobre container e consegui subir minha imagem no docker hub. Foi um desafio muito intenso já que corri contra o tempo e tentei entregar meu melhor. 
 
 
 ## Stack utilizada
