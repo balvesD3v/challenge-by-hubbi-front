@@ -40,7 +40,6 @@ export const TransactionList: React.FC<TransactionListProps> = ({
           {dataTransaction &&
             dataTransaction.map((transaction) => (
               <TableRow key={transaction.id}>
-                <TableCell>{transaction.id}</TableCell>
                 <TableCell>{transaction.type}</TableCell>
                 <TableCell>{formatDate(transaction.date)}</TableCell>
                 <TableCell>{transaction.product}</TableCell>
